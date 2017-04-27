@@ -155,7 +155,7 @@ var tooltip = d3.select("body").append("div")
 
 // load data
 
-d3.csv("file:///Users/neilpatel/Documents/election_matfiles/election_table.csv", function(error, data) {
+d3.csv("election_table.csv", function(error, data) {
 
   // change string (from CSV) into number format
   data.forEach(function(d) {
