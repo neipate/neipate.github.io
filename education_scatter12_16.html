@@ -73,7 +73,7 @@ d3.selectAll("circle").transition(12000).attr("cx", function(d){return d3.scale.
 function change2012() {
 	
 x_plotvar = "White_Education"
-d3.selectAll("circle").transition(12000).attr("cx", function(d){return d3.scale.linear().domain([0, 80]).range([0, width])(d[x_plotvar])+"px"}).attr("cy", function(d){return d3.scale.linear().domain([0, 0.8]).range([height, 0])(d.rep_2012pres)+"px"})
+d3.selectAll("circle").transition(12000).attr("cx", function(d){return d3.scale.linear().domain([0, 100]).range([0, width])(d[x_plotvar])+"px"}).attr("cy", function(d){return d3.scale.linear().domain([0, 0.8]).range([height, 0])(d.rep_2012pres)+"px"})
 
 }
 
