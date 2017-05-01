@@ -1,11 +1,18 @@
 <html>
 
-<p>In Massachusetts, the election shift from 2012 to 2016 is almost entirely correlated to Education-level of precinct, or rather % population of each precinct was non-college educated. The R<sup>2</sup>between the 2012 result and 2016 was 0.81, adding a variable for whites w/o no college degree brings the R<sup>2</sup> to 0.95, adding in a variable for whites w/ a college degree to 0.96. Adding income did not improve the fit at all, and fitting against income but not education had a poorer fit than education. Typical recent state elections were closer to the 2012 election pattern rather than 2016; races such as governor or senate correlate very well with the 2012 presidential election ( R<sup>2</sup> > 0.95), less so with this election. A best fit equation is shown here.</p>
+<p>In 2016, the state voted on a ballot measure to legalize marijuana. Marijuana legalization vote in an election precinct did not follow a simple partisan pattern, though was modestly correlated to the Democratic vote of share of a place in 2012, with an R<sup>2</sup> = 0.43. Many of the more affluent Boston suburbs where Trump did badly voted against marijuana legalization; while reverse was true for some areas that became more Republican. This simple map marks:</p>
 
-<p>Clinton 2016 = 0.193 + 0.785(Obama 2012) - 0.252(% Whites w/o Degree) + 0.123(% Whites w/ Degree)</p>
+<ul>
+  <li>Blue; Clinton Won and voted for Marijuana</li>
+  <li>Green; Clinton Won and voted against Marijuana</li>
+  <li>Orange; Trump Won and voted for Marijuana</li>
+  <li>Red; Trump Won and voted against Marijuana</li>
+  <li>Milk</li>
+</ul>
 
+<img src="weed_trump_map.png" width="600">
 
-<p>This implies at the same education level, places where Obama did very well had a smaller shift towards Clinton, because there were fewer Democrats to add (and more Democrats to lose). The clusters are based on just election results, but they end up following education and race rather neatly. Click on the 2012 and 2016 buttons to see the different shifts. Each of the k-means cluster stay distinct with respect to Education despite Education was not one fo the variable used to create the plots</p>
+<p>Also a good example of why election maps can be misleading; the actual result was a narrow in but appears Blue + Orange is the vast majority of the state, especially if one knows the Boston and adjacent cities are in the blue region. Also might get the misleading result that since more Trump voting areas voting for marijuana legalization, Trump voters tended to vote for marijuana legalization. Here's a scatter plot showing how weell different groupings voted. In the purple and dark brown precincts, which were more Democratic in 2016, marijuana legalization didn't do particularly well. You can see the correlation was tighter in 2012.</p>
 
 <p>
 
@@ -67,14 +74,14 @@ function newGraph() {
 function change2016() {
 	
 x_plotvar = "White_Education"
-d3.selectAll("circle").transition(12000).attr("cx", function(d){return d3.scale.linear().domain([0, 100]).range([0, width])(d[x_plotvar])+"px"}).attr("cy", function(d){return d3.scale.linear().domain([0, 0.8]).range([height, 0])(d.rep_2016pres)+"px"})
+d3.selectAll("circle").transition(12000).attr("cx", function(d){return d3.scale.linear().domain([0, 0.75]).range([0, width])(d.rep_2016pres)+"px"}).attr("cy", function(d){return d3.scale.linear().domain([0.25, 0.9]).range([height, 0])(d.legalweed)+"px"})
 
 }
 
 function change2012() {
 	
 x_plotvar = "White_Education"
-d3.selectAll("circle").transition(12000).attr("cx", function(d){return d3.scale.linear().domain([0, 100]).range([0, width])(d[x_plotvar])+"px"}).attr("cy", function(d){return d3.scale.linear().domain([0, 0.8]).range([height, 0])(d.rep_2012pres)+"px"})
+d3.selectAll("circle").transition(12000).attr("cx", function(d){return d3.scale.linear().domain([0, 0.75]).range([0, width])(d.rep_2012pres)+"px"}).attr("cy", function(d){return d3.scale.linear().domain([0.25, 0.9]).range([height, 0])(d.legalweed)+"px"})
 
 }
 
@@ -136,8 +143,8 @@ d3.csv("elec_new.csv", function(error, data) {
  
 
   // don't want dots overlapping axis, so add in buffer to data domain
-  xScale.domain([0, 100]);
-  yScale.domain([0, 0.8]);
+  xScale.domain([0, 0.75]);
+  yScale.domain([0.25, 0.9]);
 
   // x-axis
   svg.append("g")
@@ -149,8 +156,7 @@ d3.csv("elec_new.csv", function(error, data) {
       .attr("x", width)
       .attr("y", -6)
       .style("text-anchor", "end")
-      .text(x_plotvar);
-
+      .text("% Voting Republican in Presidential Election");
   // y-axis
   svg.append("g")
       .attr("class", "y axis")
@@ -161,7 +167,7 @@ d3.csv("elec_new.csv", function(error, data) {
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("% Voting Republican in Presidential Election");
+      .text("% Yes for Marijuana Legalization");
 
   // draw dots
   
@@ -199,9 +205,3 @@ d3.csv("elec_new.csv", function(error, data) {
 <p>
 	
 </p>
-
-<p>In 2012, there was barely any correlateion with Education alone, controlling for race. R<sup>2</sup> between the 2012 result and race alone was 0.53, adding in education only improved to 0.55, while combining household income improved the correlation 0.66. More educated places were somewhat more likely to vote Democratic, but richer places were somewhat more likely to vote Republican. Since education and income are strongly correlated, both demographic factors needed to be taken into an account. In 2016, education alone was sufficient that adding income gave little improvement to the demographic reggresion. The more affluent, educated dark brown areas and purple neighborhoods in particular voted less Republican than usual.</p> 
-
-<p>Here’s a map of the shift; red is where Clinton did better than Obama. In 2012, Republicans had a bit of a home state boost from Mitt Romney; so you’d expect Trump to have a bit of a disadvantage compared to Romney; and Massachusetts was the only state in the Northeast and Midwest besides Illinois where Trump did worse than Romney. </p>
-
-<img src="ma_shift2012_2016.png" width="600">
