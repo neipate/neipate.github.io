@@ -7,12 +7,13 @@
   <li>Green; Clinton Won and voted against Marijuana</li>
   <li>Orange; Trump Won and voted for Marijuana</li>
   <li>Red; Trump Won and voted against Marijuana</li>
-  <li>Milk</li>
 </ul>
 
 <img src="weed_trump_map.png" width="600">
 
-<p>Also a good example of why election maps can be misleading; the actual result was a narrow in but appears Blue + Orange is the vast majority of the state, especially if one knows the Boston and adjacent cities are in the blue region. Also might get the misleading result that since more Trump voting areas voting for marijuana legalization, Trump voters tended to vote for marijuana legalization. Here's a scatter plot showing how weell different groupings voted. In the purple and dark brown precincts, which were more Democratic in 2016, marijuana legalization didn't do particularly well. You can see the correlation was tighter in 2012.</p>
+<p>Also a good example of why election maps can be misleading; the actual result was a narrow in but appears Blue + Orange is the vast majority of the state, especially if one knows the Boston and adjacent cities are in the blue region. Most of the Green aren’t areas that are particularly friendly Democrats (by Massachusetts standards) in “normal” election years. Probably also tended to be older; the Cape in particular has lots of older retirees. The map may also might get one the misleading result that since more Trump voting areas voting for marijuana legalization, Trump voters tended to vote for marijuana legalization. 
+		
+<p>Here's a scatter plot showing how weell different groupings voted. In the purple and dark brown precincts [referring to the scatter plot colors, not the colors in the above map], which were more Democratic in 2016, marijuana legalization didn't do particularly well. You can see the correlation was tighter in 2012.</p>
 
 <p>
 
@@ -73,15 +74,17 @@ function newGraph() {
 
 function change2016() {
 	
-x_plotvar = "White_Education"
-d3.selectAll("circle").transition(12000).attr("cx", function(d){return d3.scale.linear().domain([0, 0.75]).range([0, width])(d.rep_2016pres)+"px"}).attr("cy", function(d){return d3.scale.linear().domain([0.25, 0.9]).range([height, 0])(d.legalweed)+"px"})
+var	x_plotvar = "rep_2016pres",
+	y_plotvar = "legalweed";
+d3.selectAll("circle").transition(12000).attr("cx", function(d){return d3.scale.linear().domain([0, 0.7]).range([0, width])(d[x_plotvar])+"px"}).attr("cy", function(d){return d3.scale.linear().domain([0.25, 0.9]).range([height, 0])(d.legalweed)+"px"})
 
 }
 
 function change2012() {
 	
-x_plotvar = "White_Education"
-d3.selectAll("circle").transition(12000).attr("cx", function(d){return d3.scale.linear().domain([0, 0.75]).range([0, width])(d.rep_2012pres)+"px"}).attr("cy", function(d){return d3.scale.linear().domain([0.25, 0.9]).range([height, 0])(d.legalweed)+"px"})
+var x_plotvar = "rep_2012pres",
+	y_plotvar = "legalweed";
+d3.selectAll("circle").transition(12000).attr("cx", function(d){return d3.scale.linear().domain([0, 0.7]).range([0, width])(d[x_plotvar])+"px"}).attr("cy", function(d){return d3.scale.linear().domain([0.25, 0.9]).range([height, 0])(d[y_plotvar])+"px"})
 
 }
 
@@ -143,7 +146,7 @@ d3.csv("elec_new.csv", function(error, data) {
  
 
   // don't want dots overlapping axis, so add in buffer to data domain
-  xScale.domain([0, 0.75]);
+  xScale.domain([0, 0.7]);
   yScale.domain([0.25, 0.9]);
 
   // x-axis
@@ -205,3 +208,9 @@ d3.csv("elec_new.csv", function(error, data) {
 <p>
 	
 </p>
+
+<p>Going through a number of different variables, I found the best predictor of voting yes was a variable I named "Bernie Popularity"; the product of Bernie Sanders vote. The outliers to the upper left of the main fit are either non-white or rich Boston area districts that were socially liberal but didn't like Bernie much. The red dot to that score high in Bernie Popularity but not that very high for marijuana legalization are liberal rural Western Massachusetts areas with lots of older voters. The very upper right are college areas (Amherst & Northampton, Boston near BU & Northeastern, parts of Cambridge / Somerville). I colored the map as there was a clear racial pattern that was independent of partisanship</p>
+
+<img src="bernie_legalweed.png" width="500">
+
+<p>I also made a </a> <a href="weedvote_map.html"> zoomable map </a>  of the ballot results, placed it a separate page as it is rather large</p>
