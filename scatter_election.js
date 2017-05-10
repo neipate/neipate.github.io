@@ -113,6 +113,9 @@ function change_data(pres_xaxis,ballot_measure) {
 	if (x_plotvar == "White_Education") { 
 	    x_label = "% of White Residents with at least a Bachelor's Degree";
 	}	
+	if (x_plotvar == "Bernie_Votes") { 
+	    x_label = "Bernie Popularity";
+	}	
 	
 d3.selectAll("circle").transition(24000).attr("cx", function(d){return d3.scale.linear().domain(xpercent_range).range([0, width])(d[x_plotvar]*100)+"px"}).attr("cy", function(d){return d3.scale.linear().domain(ypercent_range).range([height, 0])(d[y_plotvar]*100)+"px"})
 	

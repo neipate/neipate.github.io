@@ -71,17 +71,23 @@ margin-left:auto;
 
 </div>
 <center>
-<div id="option">
+<div id="option2016">
     <input name="updateButton" 
            type="button" 
-           value="2016" 
+           value="2016 Presidential Election" 
            onclick="change_data('rep_2016pres','')"  />
 </div>
 <div id="opt2012">
     <input name="updateButton" 
            type="button" 
-           value="2012" 
+           value="2012 Presidential Election"  
            onclick="change_data('rep_2012pres','')" />
+</div>
+<div id="optbernie">
+    <input name="updateButton" 
+           type="button" 
+           value="Bernie Popularity" 
+           onclick="change_data('Bernie_Votes','')" />
 </div>
 </center>
 
@@ -105,7 +111,7 @@ var	x_plotvar = "rep_2016pres",
 	
 </p>
 
-<p>Going through a number of different variables, I found the best predictor of voting yes was a variable I named "Bernie Popularity"; the product of Bernie Sanders vote. The outliers to the upper left of the main fit are either non-white or rich Boston area districts that were socially liberal but didn't like Bernie much. The red dot to that score high in Bernie Popularity but not that very high for marijuana legalization are liberal rural Western Massachusetts areas with lots of older voters. The very upper right are college areas (Amherst & Northampton, Boston near BU & Northeastern, parts of Cambridge / Somerville). I colored the map by raceas there was a clear racial pattern that was independent of partisanship</p>
+<p>Going through a number of different variables, I found the best predictor of voting yes was a variable I named "Bernie Popularity"; the product of Bernie Sanders vote. Click on the button above the graph to see the fit improve. Note this variable removes the distinctiveness of most of the clusters. The outliers to the upper left of the main fit are either non-white or rich Boston area districts that were socially liberal but didn't like Bernie much. The yellow dots that score high in Bernie Popularity but not quite as high for marijuana legalization are liberal rural Western Massachusetts areas with lots of older voters. The very upper right are college areas (Amherst & Northampton, Boston near BU & Northeastern, parts of Cambridge / Somerville) are light blue with lots of young people. </p>
 
 <img class="state_map"src="bernie_legalweed.png" width="500">
 
