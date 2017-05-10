@@ -1,0 +1,137 @@
+<html>
+
+
+<style>
+body {
+  font: 11px sans-serif;
+}
+
+p {
+font-family: 'Trebuchet', sans-serif;
+font-size: 14px;
+width:800px;
+line-height: 1.25;
+margin-right:auto;
+margin-left:auto;
+}
+
+ballot_title {
+font-family: 'Trebuchet', sans-serif;
+font-size: 16px;
+text-align: right;
+font-weight: bold;
+width:800px;
+line-height: 1.5;
+}
+
+IMG.state_map {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }
+
+ul {
+font-family: 'Trebuchet', sans-serif;
+font-size: 14px;
+width:800px;
+line-height: 1.25;
+margin-right:auto;
+margin-left:auto;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.dot {
+  stroke: #000;
+}
+
+.tooltip {
+  position: absolute;
+  width: 200px;
+  height: 28px;
+  pointer-events: none;
+}
+</style>
+
+<img src="ma_classify_pca.png" class="state_map" width="600" style="float:middle">
+
+
+<p>Below are scatterplots of how several ballot measures did by election precinct compared to how Republican they are, measured by the last two election result. The dots are colored by the clustering group described previously. Map of the groups is shown above. If the dots are in a tight diagonal line, it suggests that the ballot measure followed usual partisan patterns. A low correlation suggests the issue isn't a large influence on what party someone chooses to vote for.</p>
+
+<p>Notice for most ballot measure, even between cluster groups with little voting difference in presidential elections, they have distinct patterns in how they vote on ballot measures</p>
+
+<body>
+	
+	<div class="Selections" >
+
+	<p>The scatterplot currently shows the result of the 
+	<select class="First" id="ballots" onchange="change_data('',this.value)"  >
+	  <option value="legalweed">% Yes to Legalized Marijuana</option>
+	  <option value="charterschools">% Yes to Charter Schools</option>
+	  <option value="q3_2012_yes">% Yes to Medical Marijuana</option>
+	  <option value="q2_2012_yes">% Yes to Physician Assited Suicide</option>
+	  <option value="q4_2014_yes">% Yes to Required Sick Pay</option>
+	  <option value="q1_2014_yes">% Yes to Lower Gas Tax</option>
+	</select> ballot measure by precinct and presidential election results
+</p>
+</div>
+<center>
+<div id="option">
+    <input name="updateButton" 
+           type="button" 
+           value="2016 Presidential Election" 
+           onclick="change_data('rep_2016pres','')"  />
+</div>
+<div id="opt2012">
+    <input name="updateButton" 
+           type="button" 
+           value="2012 Presidential Election" 
+           onclick="change_data('rep_2012pres','')" />
+</div>
+</center>
+
+<script src="https://d3js.org/d3.v3.min.js"></script>
+
+<script>
+
+var	x_plotvar = "rep_2016pres",
+	y_plotvar = "legalweed",
+	xpercent_range = [0,70],
+	ypercent_range = [10,90],
+	xlabel_0 = "% Voting Republican in 2012 Presidential Election",
+	ylabel_0 = "% Yes for Marijuana Legalization 2016";	
+	</script>
+
+<script src="scatter_election.js"></script>
+
+<p>
+	
+</p>
+
+<center><ballot_title>Marijuana Legalization</ballot_title></center>
+
+<p>The vote on marijuana legalization is partially on party lines, but it's clear the correlation isn't tight. The result correlated better with the election vote in 2012 than 2016. Notice when going between 2012 and 2016 that precincts where Republicans did especially bad tended to vote against marijuana leglization.  A much more </a><a href="marijuana_vote.html">in-depth discussion</a> shows the factors that correlate most with the ballot.</p>
+
+<center><ballot_title>Medical Marijuana</ballot_title></center>
+
+<p>Kinda similar to Marijuana Legalization, except did better everywhere. Less of a correlation with partisanship.</p>
+
+<center><ballot_title>Charter Schools</ballot_title></center>
+
+<p>Some speculated that minorities, especially those living in inner cities with low-performing public schools. The dark blue precincts correspond to poorer minority areas, with red areas similar but a bit less poor or more white. Neither of those areas did charter schools do particularly well. There wasn't a huge partisan pattern, though it did badly in the very liberal light blue areas. It did best in the areas where Trump did much worse than Romney; most moderate, fairly affluent suburban areas. A vote for "neoliberalism"? </p>
+
+<center><ballot_title>Physician Assisted Suicide</ballot_title></center>
+
+<p>This ballot measure is an example of one that didn't follow party lines. The more Democratic districts appeared to be very split. Most of the precincts where the measure did poorly swung away from Trump; the ones where the measure did well tended to swing towards Trump. The medical marijuana measure has a less extreme version of this split.</p>
+
+<center><ballot_title>Sick Pay</ballot_title></center>
+
+<p>This ballot measure is an example of one that follow party lines very closely. 2012 results fit a bit better than 2016, implying that economic left / right views tracked 2012 results more than 2016</p>
+
+<center><ballot_title>Lower Gas Tax</ballot_title></center>
+
+<p>Fairly similar to the sick pay ballot, but the fairly poor, less educated Democratic areas (Red & Dark Blue) were more in favor of the measure than you'd expect given their partisanship. Fit 2016 results a bit than 2012.</p>

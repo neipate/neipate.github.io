@@ -1,0 +1,118 @@
+<html>
+
+
+<style>
+body {
+  font: 11px sans-serif;
+}
+
+p {
+font-family: 'Trebuchet', sans-serif;
+font-size: 14px;
+width:800px;
+line-height: 1.25;
+margin-right:auto;
+margin-left:auto;
+}
+
+ballot_title {
+font-family: 'Trebuchet', sans-serif;
+font-size: 16px;
+text-align: right;
+font-weight: bold;
+width:800px;
+line-height: 1.5;
+}
+
+IMG.state_map {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }
+
+ul {
+font-family: 'Trebuchet', sans-serif;
+font-size: 14px;
+width:800px;
+line-height: 1.25;
+margin-right:auto;
+margin-left:auto;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.dot {
+  stroke: #000;
+}
+
+.tooltip {
+  position: absolute;
+  width: 200px;
+  height: 28px;
+  pointer-events: none;
+}
+</style>
+
+<img src="ma_classify_pca.png" class="state_map" width="600" style="float:middle">
+
+
+<p>Below are scatterplots of how the 2016 primary results correlated with general election results. The dots are colored by the clustering group described previously. Map of the groups is shown above.</p>
+
+<p>Note how precincts that voted differently in primaries are colored in separate groups </p>
+
+<body>
+	
+	<div class="Selections" >
+
+	<p>The scatterplot currently shows the result of the 
+	<select class="First" id="ballots" onchange="change_data('',this.value)"  >
+	  <option value="dem2016_bernie">% Voting for Sanders in Democratic Primary</option>
+	  <option value="rep2016_trump">% Voting for Trump in Republican Primary</option>
+	</select> ballot measure by precinct and presidential election results
+</p>
+</div>
+<center>
+<div id="option">
+    <input name="updateButton" 
+           type="button" 
+           value="2016 Presidential Election" 
+           onclick="change_data('rep_2016pres','')"  />
+</div>
+<div id="opt2012">
+    <input name="updateButton" 
+           type="button" 
+           value="2012 Presidential Election" 
+           onclick="change_data('rep_2012pres','')" />
+</div>
+</center>
+
+<script src="https://d3js.org/d3.v3.min.js"></script>
+
+<script>
+	
+var	x_plotvar = "rep_2016pres",
+	y_plotvar = "dem2016_bernie",
+	xpercent_range = [0,70],
+	ypercent_range = [0,90],
+	xlabel_0 = "% Voting Republican in 2016 Presidential Election",
+	ylabel_0 = "% Voting for Sanders in Democratic Primary";	
+	
+	</script>
+
+<script src="scatter_election.js"></script>
+
+<p>
+	
+</p>
+
+<center><ballot_title>Democratic Primary</ballot_title></center>
+
+<p>The places where Bernie did best were very liberal, not very affluent, and mostly minority; stereotypical college towns + rural western Massachusetts near Vermont. But he also did well in relatively Republican areas, especially less affluent; better correlated with the 2016 general election than 2012. This suggests he did better in places where the Democratic Party as an instution was weaker.</p>
+
+<center><ballot_title>Republican Primary</ballot_title></center>
+
+<p>Unsurprisingly, Trump result in the primary was clearly a predictor of his performance in the The areas where Trump did especially bad in the primary. His primary result wasn't particularly well correlated to Romney's performance in 2012.</p>
