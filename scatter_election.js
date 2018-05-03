@@ -1,6 +1,4 @@
-
-
-var margin = {top: 20, right: 20, bottom: 30, left: 140},
+var margin = {top: 20, right: 20, bottom: 50, left: 140},
     width = 800 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -33,7 +31,7 @@ var svg = d3.select("body").append("svg")
 var xaxis_label = create_xaxis.append("text")
     .attr("class", "label_x")
     .attr("x", width)
-    .attr("y", -6)
+    .attr("y", 35)
     .style("text-anchor", "end")
     .text(xlabel_0);
 
@@ -61,7 +59,7 @@ svg.append("g")
  */ 
 
 // setup fill color
-var cValue = function(d) { return d.k_means_pca;},
+var cValue = function(d) { return d.kmeans_5;},
     color = d3.scale.ordinal()
 	  .domain([1,2,3,4,5,6,7,8])
 	  .range([d3.rgb(255,0,0), d3.rgb(252,249,0) , d3.rgb(63,0,255),d3.rgb(0,204,0),d3.rgb(248,58,203),d3.rgb(0,207,255),d3.rgb(187,96,0),d3.rgb(255,161,0)]);
@@ -78,7 +76,7 @@ var tooltip = d3.select("body").append("div")
 
 // load data
 
-d3.csv("election_table.csv", function(error, data) {
+d3.csv("electon_w5clusters.csv", function(error, data) {
  
 
   // draw dots
@@ -142,7 +140,7 @@ if (ballot_measure == "legalweed") {
 } else if(ballot_measure == "charterschools")  {
 	d3.selectAll("text.label_y").text("% Yes to more Charter Schools");
 } else if(ballot_measure == "q2_2012_yes")  {	
-	d3.selectAll("text.label_y").text("% Yes to Physician Assissted Suicide");
+	d3.selectAll("text.label_y").text("% Yes to Physician Assisted Suicide");
 } else if(ballot_measure == "rep2016_trump") {
 	d3.selectAll("text.label_y").text("% Voting for Trump in Republican Primary");
 } else if(ballot_measure == "dem2016_bernie") {
